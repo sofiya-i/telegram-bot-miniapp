@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Web App Integration</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+
+    <script
+        src="https://code.jquery.com/jquery-3.3.1.min.js"
+        integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous">
+    </script>
+
+    <style>
+        body {
+            background-color: var(--tg-theme-bg-color);
+            color: var(--tg-theme-text-color);
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        button {
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #0088cc;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #005580;
+        }
+    </style>
+
+</head>
+<body>
+    <h1>Telegram MiniApp Integration</h1>
+    <p>Tap to interact with LordCoin!</p>
+    <button onclick="sendData()">Send Data</button>
+    <button id="closeApp" onclick="closeApp()">Close App</button>
+    
+    <script>
+        const tg = window.Telegram.WebApp;
+
+        function sendData() {
+            $.ajax({
+                url: 'http://localhost:8080/process',  // اطمینان حاصل کن که آدرس صحیح باشه
+                type: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify({ 'value': tg.initData }),
+                success: function(response) {
+                    console.log('Data sent successfully:', response);
+                },
+                error: function(err) {
+                    console.error('Error sending data:', err);
+                }
+            });
+        };
+
+        function closeApp() {
+            tg.close()
+        };
+    </script>
+</body>
+</html>
