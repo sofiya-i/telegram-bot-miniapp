@@ -1,11 +1,11 @@
 from telebot import TeleBot, types
 import requests
 
-bot = TeleBot('7088114691:AAEdEGNoY10GrDA5s5DdGGD-E1fWWvZHF8o')  # Replace with your actual bot token
+bot = TeleBot('YOUR_BOT_TOKEN_HERE')  # Replace with your actual bot token
 
 def expand(message, init_data):
     # Validate the init_data
-    response = requests.post('http://localhost:8080/expand', json={'init_data': init_data})
+    response = requests.post('http://YOUR_DOMAIN_HERE:8080/expand', json={'init_data': init_data})
     if response.status_code == 200:
         data = response.json()
         if data['status'] == 'success':
