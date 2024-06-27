@@ -22,7 +22,7 @@ def validate_user():
     data = request.get_json()
     if data and 'value' in data:
         print(data['value'])
-        is_valid = validate_init_data(data['value'], '7088114691:AAEdEGNoY10GrDA5s5DdGGD-E1fWWvZHF8o')  # Replace with your actual bot token
+        is_valid = validate_init_data(data['value'], 'YOUR_BOT_TOKEN_HERE')  # Replace with your actual bot token
         print(is_valid)
         return jsonify(is_valid=is_valid)
     return jsonify(is_valid=False)
@@ -31,7 +31,7 @@ def validate_user():
 def expand():
     data = request.get_json()
     if data and 'init_data' in data:
-        is_valid = validate_init_data(data['init_data'], '7088114691:AAEdEGNoY10GrDA5s5DdGGD-E1fWWvZHF8o')  # Replace with your actual bot token
+        is_valid = validate_init_data(data['init_data'], 'YOUR_BOT_TOKEN_HERE')  # Replace with your actual bot token
         if is_valid:
             return jsonify(status='success')
         else:
@@ -40,4 +40,4 @@ def expand():
         return jsonify(status='failure', message='Invalid request')
 
 if __name__ == '__main__':
-    app.run(port=8080)
+    app.run(host='0.0.0.0', port=8080)
