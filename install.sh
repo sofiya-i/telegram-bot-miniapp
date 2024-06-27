@@ -19,8 +19,9 @@ install_bot() {
     pip3 install pyTelegramBotAPI Flask
 
     # تنظیم فایل‌های پیکربندی
-    sed -i "s/YOUR_BOT_TOKEN_HERE/$token/g" bot.py
+    sed -i "s#http://YOUR_DOMAIN_HERE:8080/process#http://$domain:8080/process#g" index.html
     sed -i "s/YOUR_DOMAIN_HERE/$domain/g" bot.py
+    sed -i "s/YOUR_BOT_TOKEN_HERE/$token/g" bot.py
     sed -i "s/YOUR_ADMIN_ID_HERE/$admin_id/g" bot.py
 
     # یادآوری برای پیکربندی فایل config.py
@@ -59,13 +60,15 @@ main_menu() {
     echo "2. Update"
     echo "3. Uninstall"
     echo "4. Change IP/Domain"
-    read -p "Enter your choice [1-4]: " choice
+    echo "5. Exit"
+    read -p "Enter your choice [1-5]: " choice
 
     case $choice in
         1) install_bot ;;
         2) update_bot ;;
         3) uninstall_bot ;;
         4) change_ip ;;
+        5) exit ;;
         *) echo "Invalid choice, please select again." ;;
     esac
 }
