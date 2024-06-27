@@ -11,6 +11,9 @@ cd telegram-bot-miniapp
 # نصب کتابخانه‌ها به صورت global
 pip3 install -r requirements.txt
 
+# نصب ماژول pyTelegramBotAPI
+pip3 install pyTelegramBotAPI
+
 # یادآوری برای پیکربندی فایل config.py
 echo "Please configure the config.py file with your bot token and other settings."
 
