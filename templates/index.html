@@ -46,7 +46,7 @@
 
         function sendData() {
             $.ajax({
-                url: 'http://localhost:8080/process',  // اطمینان حاصل کن که آدرس صحیح باشه
+                url: 'http://YOUR_DOMAIN_HERE:8080/process',  // تغییر آدرس به آدرس سرور مجازی شما
                 type: 'POST',
                 contentType: 'application/json',
                 data: JSON.stringify({ 'value': tg.initData }),
