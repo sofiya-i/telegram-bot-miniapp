@@ -24,6 +24,13 @@ install_bot() {
     sed -i "s/YOUR_BOT_TOKEN_HERE/$token/g" bot.py
     sed -i "s/YOUR_ADMIN_ID_HERE/$admin_id/g" bot.py
 
+    # نصب Certbot و درخواست SSL
+    sudo apt-get install certbot python3-certbot-nginx -y
+    sudo certbot certonly --standalone --preferred-challenges http -d $domain
+
+    # اضافه کردن تسک خودکار تجدید گواهی SSL
+    (crontab -l 2>/dev/null; echo "0 0 1 * * sudo certbot renew --quiet") | crontab -
+
     # یادآوری برای پیکربندی فایل config.py
     echo "Please configure the config.py file with your bot token and other settings."
 
